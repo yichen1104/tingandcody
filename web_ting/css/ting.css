@@ -1,0 +1,26 @@
+[v-cloak] {
+    display: none;
+}
+
+@font-face {
+    font-family: 'openhuninn';
+    src: url('../fonts/jf-openhuninn-2.0.ttf')format("truetype");
+}
+
+#web {
+    font-family: 'openhuninn';
+}
+
+
+.text {
+    position: absolute;
+    z-index: 9999999;
+    font-weight: bold;
+    user-select: none;
+}
+
+@keyframes remove {
+    100% {
+        opacity: 0;
+    }
+}
