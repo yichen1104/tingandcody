@@ -5,8 +5,11 @@ new Vue({
     // 資料
     data: function () {
         return {
-            content:["❤活出自己。❤", "❤《06/22》❤", "❤《11/04》❤", "❤《08/20》❤", "❤《10/08》❤",
-                        "❤《08/11》❤", "❤《08/29》❤", "❤《牽手》❤", "❤《抱抱》❤", "❤《愛你》❤", "❤《想你》❤"]
+            content:["❤怡婷❤", "❤《06/22》❤", "❤《11/04》❤", "❤《08/20》❤", "❤《10/08》❤", "❤羿辰❤",
+                        "❤《08/11》❤", "❤《08/29》❤", "❤《牽手》❤", "❤《抱抱》❤", "❤《愛你》❤", "❤《想你》❤"],
+            username:'怡婷',
+            password:'',
+            store_erroe:0,
         }
     },
 
@@ -71,7 +74,23 @@ new Vue({
     },
 
     methods: {
-        //隨機生成一個字串
+
+        //使用者登入
+        user_login(){
+            console.log(this.username);
+            console.log(this.password);
+            if(this.password == ''){
+                this.store_erroe += 1;
+                this.$notify({
+                    title: 'NoNo',
+                    message: '密碼怎麼可能是空的呢~' + '</br>' + '累積錯誤: '+this.store_erroe,
+                    type: 'warning',
+                    dangerouslyUseHTMLString:true,
+                    // customClass:'customClassNotify'
+                });
+                return
+            }
+        }
         
     },
 
