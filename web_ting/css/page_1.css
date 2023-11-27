@@ -137,3 +137,25 @@ html, body{
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
   }
+
+  /* .el-image{
+    margin-top: 10%;
+  } */
+
+  .el-carousel__item{
+    background-color: white !important;
+  }
+
+  .el-dialog{
+    font-size: 32px;
+    border-radius: 20px;
+  }
+
+  .el-dialog__body{
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .el-dialog__footer{
+    text-align: center;
+  }

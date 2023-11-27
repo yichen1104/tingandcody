@@ -19,7 +19,7 @@
             </el-header>
             <el-container>
                 <el-aside width="100px" style="padding: 0px; overflow: hidden;">
-                    <el-menu default-active="1" class="el-menu-vertical" @open="handleOpen" @close="handleClose" @select='handselect' :collapse="true">
+                    <el-menu default-active="1" class="el-menu-vertical" @open="handleOpen" @close="handleClose" @select='handselect' :collapse="true" >
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
                             <span slot="title">首頁</span>
@@ -36,19 +36,20 @@
                 </el-aside>
                 <el-main style="padding: 5px;">
                     <el-row>
-                        <el-col :xl="{span:2,offset:22}" :lg="{span:2,offset:22}" :md="{span:2,offset:22}" :sm="{span:8,offset:16}"
-                                :xs="{span:9,offset:15}" style="text-align: right; padding-right: 50px;">
+                        <el-col :xl="{span:24,offset:0}" :lg="{span:24,offset:0}" :md="{span:24,offset:0}" :sm="{span:24,offset:0}"
+                                :xs="{span:24,offset:0}" style="text-align: center;">
                             <div style="text-align: center;">
                                 <i :class="music_status? 'bi bi-volume-up-fill':'bi bi-volume-mute-fill'" style="font-size: 30px; cursor: pointer;" @click="change_music"></i><br/>
                                 {{music_status?'ON':'OFF'}}<br/>
                                 <span>背景聲音(◑‿◐)</span>
                             </div>
-                            <iframe width="0"
-                            height="0"
+                            <iframe width="50"
+                            height="50"
                             :src="srcdata"
                             title="backgroundmusic"
                             frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe><br/>
+                            <el-button round @click="start_question" style="background: black; color: white;">再次問答</el-button>
                         </el-col>
                     </el-row>
                     <!-- 第一個畫面 -->
@@ -78,21 +79,38 @@
                     </el-row>
                     <!-- 第二個畫面 -->
                     <el-row v-show="show_status == 1">
-                        <el-col :span='9' :offset="2" style="text-align: -webkit-center; margin-bottom: 15px;">
+                        <el-col :xl="{span:7,offset:2}" :lg="{span:7,offset:2}" :md="{span:7,offset:2}" :sm="{span:7,offset:2}"
+                                :xs="{span:22,offset:1}" style="text-align: -webkit-center; margin-bottom: 15px;">
                             <div id="webgl" class='class_webgl' style="width:100%;height:100%;" ></div>
                         </el-col>
-                        <el-col :span='11'>
-                            <pre style="font-size: 18px;">
+                        <el-col :xl="{span:11,offset:0}" :lg="{span:11,offset:0}" :md="{span:8,offset:4}" :sm="{span:8,offset:5}"
+                                    :xs="{span:24,offset:0}">
+                            <pre style="font-size: 18px; ">
 TO 婷  ୧༼◕ ᴥ ◕༽୨
-    今天是交往的第 {{count_startdate}} 天，做了個小小的網頁來紀錄屬於我們的專屬故事 (∪＾ω＾)
+    今天是交往的第 {{count_startdate}} 天，做個小小的網頁來紀錄屬於我們的專屬故事 (∪＾ω＾)
+    你的出現讓我生命增添了幾分色彩，陪你一起開心、難過、生氣，分享各種生活小事，
+    或許看似平淡卻十分幸福(//●⁰౪⁰●)//，往後的100天、200天、3000天、99999天請多多指教瞜~
+    更多的故事等著我們一起撰寫~
     
-    
+    用了一輩子的運氣遇見了你（*＾3＾）
+
+    {{less_width}}的是用程式碼寫的喔(但是網路上寫的，我照抄 (*≧▽≦))
                             </pre>
                         </el-col>
-                        <el-col :span='22' :offset="1" style="text-align: -webkit-center;">
-                            <el-carousel trigger="click" height="150px" style="width: 80%">
-                                <el-carousel-item v-for="item in 4" :key="item">
-                                    <h3 class="small">{{ item }}</h3>
+                        <el-col :xl="{span:22,offset:1}" :lg="{span:22,offset:1}" :md="{span:22,offset:1}" :sm="{span:22,offset:1}"
+                        :xs="{span:24,offset:0}" style="text-align: -webkit-center;">
+                            <el-carousel trigger="click" height="350px" style="width: 100%;border-radius: 20px;">
+                                <el-carousel-item v-for="item in url_images" :key="item">
+                                    <el-image
+                                        :style="{width: item.width, height: item.height,'max-width':item.width,'max-height':item.height}"
+                                        :src="item.url"
+                                        fit="fill"
+                                        style="border-radius: 20px;"
+                                        >
+                                    <div slot="error" class="image-slot">
+                                        <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>
                                 </el-carousel-item>
                             </el-carousel>
                         </el-col>
@@ -100,6 +118,24 @@ TO 婷  ୧༼◕ ᴥ ◕༽୨
                 </el-main>
             </el-container>
         </el-container>
+
+        <el-dialog
+            :close-on-press-escape="false"
+            :show-close="false"
+            :close-on-click-modal="false"
+            title="問答小遊戲٩(✿∂‿∂✿)۶"
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>{{questiondata}}</span>
+            <span slot="footer" class="dialog-footer" v-show="!buuton_status">
+                <el-button @click="answer_value(true)">{{return_true}}</el-button>
+                <el-button @click="answer_value(false)" :disabled="false_show">{{return_false}}</el-button>
+            </span>
+            <span slot="footer" class="dialog-footer" v-show="buuton_status">
+                <el-button  @click="next_question()">{{next_or_return}}</el-button>
+            </span>
+        </el-dialog>
     </div>
     <body>
         <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
