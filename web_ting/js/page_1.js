@@ -47,8 +47,8 @@ new Vue({
                     break;
                 case '3':
                     //清除Session並登出
-                    // localStorage.removeItem("userName")
-                    // window.location.href = "/index.html";
+                    localStorage.removeItem("userName")
+                    window.location.href = "/index.html";
                     break
                 default:
                     break;

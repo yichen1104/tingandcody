@@ -129,8 +129,8 @@ new Vue({
             let store_password = 'JFnnPCq0hZoOcWx3vKMxTaiGBis'
             if(this.b64_sha1(this.password) == store_password){
                 //正確
-                localStorage.setItem("loginstatus", true)
-                window.location.href = "/page_1.html";
+                // localStorage.setItem("loginstatus", true)
+                // window.location.href = "/page_1.html";
             }else{
                 this.$notify.close()
                 if(this.store_erroe == 5){
