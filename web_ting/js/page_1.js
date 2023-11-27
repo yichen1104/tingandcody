@@ -22,7 +22,7 @@ new Vue({
         onWindowload(){
             //檢查是否登入
             if(!localStorage.getItem("loginstatus")){
-                window.location.href = "/index.html";
+                window.location.href = "/tingandcody/web_ting/index.html";
                 return
             }
 
@@ -48,7 +48,7 @@ new Vue({
                 case '3':
                     //清除Session並登出
                     localStorage.removeItem("userName")
-                    window.location.href = "/index.html";
+                    window.location.href = "/tingandcody/web_ting/index.html";
                     break
                 default:
                     break;
