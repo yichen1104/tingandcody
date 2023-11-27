@@ -131,8 +131,8 @@ new Vue({
                 //正確
                 localStorage.setItem("loginstatus", true)
                 localStorage.setItem("question", true)
-                // window.location.href = "/tingandcody/web_ting/page_1.html";
-                window.location.href = "/page_1.html";
+                window.location.href = "/tingandcody/web_ting/page_1.html";
+                // window.location.href = "/page_1.html";
             }else{
                 this.$notify.close()
                 if(this.store_erroe == 5){

@@ -38,7 +38,8 @@ new Vue({
             buuton_status:false,
             next_or_return:'',
             count_erroe:0,
-            false_show:false
+            false_show:false,
+            dialog_width:'0px'
         }
     },
 
@@ -97,6 +98,19 @@ new Vue({
             }else{
                 this.less_width = '⬆️⬆️上方'
             }
+            console.log(windowwidth);
+            if(windowwidth >=1920 ){
+                this.dialog_width = '30%'
+            }else if(windowwidth <1920 && windowwidth >=1200){
+                this.dialog_width = '40%'
+            }else if(windowwidth <1200 && windowwidth >=992){
+                this.dialog_width = '60%'
+            }else if(windowwidth <992 && windowwidth >=768){
+                this.dialog_width = '80%'
+            }else{
+                this.dialog_width = '100%'
+            }
+
         },
 
         //選擇Menu
