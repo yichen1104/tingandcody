@@ -221,6 +221,7 @@ new Vue({
                             message: '最愛婷了!!'
                         });
                         this.count_erroe = 0
+                        this.false_show = false
                         this.next_or_return = '下一題'
                     }else{
                         this.count_erroe +=1
