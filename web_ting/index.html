@@ -16,11 +16,11 @@
             <p>婷の專屬網站</p>
             <form style="text-align: center;">
             <div class="user-box">
-                <input id="username" required="" name="" :value="username" type="text">
+                <input required="" name="" v-model="username" type="text">
                 <label>登入人員</label>
             </div>
             <div class="user-box">
-                <input id="password" required="" name="" :value="password" type="password">
+                <input required="" name="" :maxlength="pass_size" :size="pass_size" v-model="password" type="password">
                 <label>密碼</label>
             </div>
             <a href="#" @click="user_login">
@@ -42,7 +42,7 @@
         <script src="js/jquery.js"></script>
         <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/zh-TW.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/ting.js"></script>
+        <script type="module" src="js/ting.js"></script>
         <script src='./js/three.min.js'></script>
         <script src='./js/MeshSurfaceSampler.js'></script>
         <script src='./js/TrackballControls.js'></script>

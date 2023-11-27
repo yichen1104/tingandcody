@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -11,9 +11,9 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({
   antialias: true
 });
-renderer.setClearColor(0xff5555);
-renderer.setSize(500, 350);
-console.log(document.getElementById('webgl'));
+renderer.setClearColor(0x87C4FF);
+renderer.setSize(300, 300);
+// console.log(document.getElementById('webgl'));
 document.getElementById('webgl').appendChild(renderer.domElement);
 
 camera.position.z = 1;
@@ -37,7 +37,7 @@ new THREE.OBJLoader().load('https://assets.codepen.io/127738/heart_2.obj',obj =>
   group.add(heart);
   
   heart.material = new THREE.MeshBasicMaterial({
-    color: 0xff5555    
+    color: 0x87C4FF    
   });
   originHeart = Array.from(heart.geometry.attributes.position.array);
   sampler = new THREE.MeshSurfaceSampler(heart).build();
@@ -127,5 +127,5 @@ window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
   camera.aspect = 100 / 100;
   camera.updateProjectionMatrix();
-  renderer.setSize(100, 100);
+  renderer.setSize(300, 300);
 }

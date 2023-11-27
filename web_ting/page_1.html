@@ -6,26 +6,115 @@
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>婷の專屬網站</title>
-        <link rel="stylesheet" href="./css/ting.css">
+        <link rel="stylesheet" href="./css/page_1.css">
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-icons.css">
         <link href="css/hover.css" rel="stylesheet">
     </head>
-
-    <spn>成功登入</spn>
+    <div id="web" v-cloak>
+        <el-container>
+            <!-- 上方標題 -->
+            <el-header>
+                <h3 style="text-align: center; padding: 15px;">婷の首頁</h3>
+            </el-header>
+            <el-container>
+                <el-aside width="100px" style="padding: 0px; overflow: hidden;">
+                    <el-menu default-active="1" class="el-menu-vertical" @open="handleOpen" @close="handleClose" @select='handselect' :collapse="true">
+                        <el-menu-item index="1">
+                            <i class="el-icon-s-home"></i>
+                            <span slot="title">首頁</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <i class="el-icon-collection"></i>
+                            <span slot="title">故事٩(✿∂‿∂✿)۶</span>
+                        </el-menu-item>
+                        <el-menu-item index="3">
+                            <i class="bi bi-arrow-bar-left" style="font-size: 20px;"></i>
+                            <span slot="title">登出</span>
+                        </el-menu-item>
+                    </el-menu>
+                </el-aside>
+                <el-main style="padding: 5px;">
+                    <el-row>
+                        <el-col :xl="{span:2,offset:22}" :lg="{span:2,offset:22}" :md="{span:2,offset:22}" :sm="{span:8,offset:16}"
+                                :xs="{span:9,offset:15}" style="text-align: right; padding-right: 50px;">
+                            <div style="text-align: center;">
+                                <i :class="music_status? 'bi bi-volume-up-fill':'bi bi-volume-mute-fill'" style="font-size: 30px; cursor: pointer;" @click="change_music"></i><br/>
+                                {{music_status?'ON':'OFF'}}<br/>
+                                <span>背景聲音(◑‿◐)</span>
+                            </div>
+                            <iframe width="0"
+                            height="0"
+                            :src="srcdata"
+                            title="backgroundmusic"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                        </el-col>
+                    </el-row>
+                    <!-- 第一個畫面 -->
+                    <el-row v-show="show_status == 0"
+                        v-loading="loading"
+                        element-loading-text="努力分析中"
+                        element-loading-spinner="el-icon-loading"
+                        element-loading-background="RGBA(224,244,255,0.8)"
+                        style="border-radius: 20px;">
+                        
+                        <el-col :span='24' style="text-align: center; font-size: 20px;">
+                            <div class="terminal-loader">
+                                <div class="terminal-header">
+                                  <div class="terminal-title">Status</div>
+                                  <div class="terminal-controls">
+                                    <div class="control close"></div>
+                                    <div class="control minimize"></div>
+                                    <div class="control maximize"></div>
+                                  </div>
+                                </div>
+                                <div class="text">print('Love for 婷')</div>
+                              </div>                              
+                        </el-col>
+                        <el-col :span="24" style="text-align: center;">
+                            <el-button round @click="excute" style="background: black; color: white;">執行程式</el-button>
+                        </el-col>
+                    </el-row>
+                    <!-- 第二個畫面 -->
+                    <el-row v-show="show_status == 1">
+                        <el-col :span='9' :offset="2" style="text-align: -webkit-center; margin-bottom: 15px;">
+                            <div id="webgl" class='class_webgl' style="width:100%;height:100%;" ></div>
+                        </el-col>
+                        <el-col :span='11'>
+                            <pre style="font-size: 18px;">
+TO 婷  ୧༼◕ ᴥ ◕༽୨
+    今天是交往的第 {{count_startdate}} 天，做了個小小的網頁來紀錄屬於我們的專屬故事 (∪＾ω＾)
+    
+    
+                            </pre>
+                        </el-col>
+                        <el-col :span='22' :offset="1" style="text-align: -webkit-center;">
+                            <el-carousel trigger="click" height="150px" style="width: 80%">
+                                <el-carousel-item v-for="item in 4" :key="item">
+                                    <h3 class="small">{{ item }}</h3>
+                                </el-carousel-item>
+                            </el-carousel>
+                        </el-col>
+                    </el-row>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
     <body>
         <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/bootstrap.bundle.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/zh-TW.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/ting.js"></script>
+        <script src="js/page_1.js"></script>
         <script src='./js/three.min.js'></script>
         <script src='./js/MeshSurfaceSampler.js'></script>
         <script src='./js/TrackballControls.js'></script>
         <script src='./js/simplex-noise.js'></script>
         <script src='./js/OBJLoader.js'></script>
         <script src='./js/gsap.min.js'></script>
-        <!-- <script src="./js/script.js"></script> -->
+        <script src="./js/script.js"></script>
 
     </body>
 
