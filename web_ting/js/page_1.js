@@ -13,17 +13,17 @@ new Vue({
             count_startdate:0,
             url_images:[
                 {
-                    url:'../web_ting/image_1.jpg',
+                    url:'../web_ting/images/image_1.jpg',
                     width:'300px',
                     height:'350px'
                 },
                 {
-                    url:'../web_ting/image_2.jpg',
+                    url:'../web_ting/images/image_2.jpg',
                     width:'230px',
                     height:'350px'
                 },
                 {
-                    url:'../web_ting/image_7.jpg',
+                    url:'../web_ting/images/image_7.jpg',
                     width:'300px',
                     height:'350px'
                 }
